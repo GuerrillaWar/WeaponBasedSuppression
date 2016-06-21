@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>9640e436-0c27-4540-971a-cd98827ccf33</Guid>
+    <Name>Weapon Based Suppression</Name>
+    <Description>Suppression effectiveness and ability changes based on the weapon used.</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>WeaponBasedSuppression</AssemblyName>
+    <RootNamespace>WeaponBasedSuppression</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Content\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Src\" />
+    <Folder Include="Src\WeaponBasedSuppression\" />
+    <Folder Include="Src\WeaponBasedSuppression\Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\XComWeaponBasedSuppression.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ReadMe.txt" />
+    <Content Include="ModPreview.jpg" />
+    <Content Include="Config\XComEditor.ini" />
+    <Content Include="Config\XComEngine.ini" />
+    <Content Include="Config\XComGame.ini" />
+    <Content Include="Localization\XComGame.int" />
+    <Content Include="Src\WeaponBasedSuppression\Classes\WeaponBasedSuppression_AbilityCost_WeaponConditionalAmmo.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WeaponBasedSuppression\Classes\WeaponBasedSuppression_Ability_Suppression.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WeaponBasedSuppression\Classes\WeaponBasedSuppression_AddSuppressionToWeapons.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WeaponBasedSuppression\Classes\WeaponBasedSuppression_Effect_Suppression.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WeaponBasedSuppression\Classes\WeaponBasedSuppression_Localize.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\WeaponBasedSuppression\Classes\X2DownloadableContentInfo_WeaponBasedSuppression.uc" />
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>
