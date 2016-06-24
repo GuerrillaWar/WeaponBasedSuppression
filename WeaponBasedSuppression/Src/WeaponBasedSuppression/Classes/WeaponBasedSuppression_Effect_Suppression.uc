@@ -30,6 +30,42 @@ function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit 
 	}
 }
 
+simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffectParameters, XComGameState_BaseObject kNewTargetState, XComGameState NewGameState, XComGameState_Effect NewEffectState)
+{
+	local XComGameState_Unit SourceUnit, TargetUnit;
+	local XComGameStateContext_Ability AbilityContext;
+
+	// pulled out of X2Effect_Persistent because overrides MUST be subclasses
+	if (EffectAddedFn != none)
+		EffectAddedFn(self, ApplyEffectParameters, kNewTargetState, NewGameState);
+
+	if (bTickWhenApplied)
+	{
+		if (NewEffectState != none)
+		{
+			if (!NewEffectState.TickEffect(NewGameState, true))
+				NewEffectState.RemoveEffect(NewGameState, NewGameState, false, true);
+		}
+	}
+	// end extraction out of X2Effect_Persistent because overrides MUST be subclasses
+
+	TargetUnit = XComGameState_Unit(kNewTargetState);
+
+	if (class'WeaponBasedSuppression_Ability_Suppression'.default.SuppressionCancelsOverwatch)
+	{
+		`log("WeaponBasedSuppression :: Removing Overwatch ReservePoints");
+		TargetUnit.ReserveActionPoints.Length = 0;              //  remove overwatch when suppressed
+	}
+	else
+	{
+		`log("WeaponBasedSuppression :: Keeping Overwatch ReservePoints");
+	}
+	SourceUnit = XComGameState_Unit(NewGameState.CreateStateObject(class'XComGameState_Unit', ApplyEffectParameters.SourceStateObjectRef.ObjectID));
+	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
+	SourceUnit.m_SuppressionAbilityContext = AbilityContext;
+	NewGameState.AddStateObject(SourceUnit);
+}
+
 function int GetAimModifierFromAbility(XComGameState_Ability SourceAbility, XComGameState_Unit SuppressedUnit)
 {
 	local XComGameState_Item ItemState;
@@ -72,4 +108,12 @@ function int GetAimModifierFromAbility(XComGameState_Ability SourceAbility, XCom
 		`log("Alien SuppressionModfier" @ default.Alien_AimPenalty);
 		return default.Alien_AimPenalty;
 	}
+}
+
+
+DefaultProperties
+{
+	EffectName="Suppression"
+	bUseSourcePlayerState=true
+	CleansedVisualizationFn=CleansedSuppressionVisualization
 }
