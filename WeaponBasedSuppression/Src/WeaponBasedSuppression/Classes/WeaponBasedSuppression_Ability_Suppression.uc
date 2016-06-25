@@ -41,6 +41,8 @@ static function UpdateSuppressionAbility()
 		ActionPointCost.bFreeCost = true;           //  ReserveActionPoints effect will take all action points away
 		Template.AbilityCosts.AddItem(ActionPointCost);
 
+		`log("WeaponBasedSuppression :: Loading Localization Strings -" @ default.SuppressionTargetEffectDesc);
+		`log("WeaponBasedSuppression :: Loading Localization Strings -" @ default.SuppressionSourceEffectDesc);
 		SuppressionEffect = WeaponBasedSuppression_Effect_Suppression(Template.AbilityTargetEffects[0]); // get first effect
 		SuppressionEffect.SetDisplayInfo(ePerkBuff_Penalty, Template.LocFriendlyName, default.SuppressionTargetEffectDesc, Template.IconImage);
 		SuppressionEffect.SetSourceDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, default.SuppressionSourceEffectDesc, Template.IconImage);
@@ -69,7 +71,6 @@ static function RemoveSuppressionExcludeEffect(X2AbilityTemplate Template)
 {
 	local int ix, suppressionIx;
 	local X2Condition_UnitEffects Condition;
-	local EffectReason ExcludeEffect;
 
 	for (ix = 0; ix < Template.AbilityShooterConditions.Length; ix++)
 	{

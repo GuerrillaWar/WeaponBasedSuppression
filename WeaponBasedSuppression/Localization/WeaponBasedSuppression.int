@@ -1,0 +1,3 @@
+[WeaponBasedSuppression_Ability_Suppression]
+SuppressionTargetEffectDesc="Suppressed by <Ability:AssociatedWeapon/>! Suffering <Ability:WeaponBasedSuppressionPenalty/> penalty to aim, and will be shot if attempting to move."
+SuppressionSourceEffectDesc="Currently suppressing a target."

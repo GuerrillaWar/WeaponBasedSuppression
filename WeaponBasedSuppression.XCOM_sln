@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # XCOM ModBuddy Solution File, Format Version 11.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{5DAE07AF-E217-45C1-8DE7-FF99D6011E8A}") = "WeaponBasedSuppression", "WeaponBasedSuppression\WeaponBasedSuppression.x2proj", "{8AA9954B-06A4-4732-AF20-6E26C61D3790}"
+Project("{5DAE07AF-E217-45C1-8DE7-FF99D6011E8A}") = "WeaponBasedSuppression", "WeaponBasedSuppression\WeaponBasedSuppression.x2proj", "{B680C6F7-27BC-4C83-974E-AE3F9017B945}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|XCOM 2 = Default|XCOM 2
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8AA9954B-06A4-4732-AF20-6E26C61D3790}.Default|XCOM 2.ActiveCfg = Default|XCOM 2
-		{8AA9954B-06A4-4732-AF20-6E26C61D3790}.Default|XCOM 2.Build.0 = Default|XCOM 2
+		{B680C6F7-27BC-4C83-974E-AE3F9017B945}.Default|XCOM 2.ActiveCfg = Default|XCOM 2
+		{B680C6F7-27BC-4C83-974E-AE3F9017B945}.Default|XCOM 2.Build.0 = Default|XCOM 2
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

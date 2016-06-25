@@ -15,9 +15,18 @@
     <Folder Include="Src\" />
     <Folder Include="Src\WeaponBasedSuppression\" />
     <Folder Include="Src\WeaponBasedSuppression\Classes\" />
+    <Folder Include="Src\LW_Tuple" />
+    <Folder Include="Src\LW_Tuple\Classes" />
+    <Folder Include="Src\XModBase_Core_1_1_0\Classes" />
+    <Folder Include="Src\XModBase_Interfaces" />
+    <Folder Include="Src\XModBase_Core_1_1_0" />
+    <Folder Include="Src\XModBase_Interfaces\Classes" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Config\XComWeaponBasedSuppression.ini">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Localization\WeaponBasedSuppression.int">
       <SubType>Content</SubType>
     </Content>
     <Content Include="ReadMe.txt" />
@@ -38,10 +47,34 @@
     <Content Include="Src\WeaponBasedSuppression\Classes\WeaponBasedSuppression_Effect_Suppression.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\WeaponBasedSuppression\Classes\WeaponBasedSuppression_Localize.uc">
+    <Content Include="Src\WeaponBasedSuppression\Classes\X2DownloadableContentInfo_WeaponBasedSuppression.uc" />
+    <Content Include="Src\LW_Tuple\Classes\LWTuple.uc">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="Src\WeaponBasedSuppression\Classes\X2DownloadableContentInfo_WeaponBasedSuppression.uc" />
+    <Content Include="Src\XModBase_Core_1_1_0\Classes\XMBAbilityMultiTarget_SoldierBonusRadius.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_1_1_0\Classes\XMBAbilityTag.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_1_1_0\Classes\XMBAbilityToHitCalc_StandardAim.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_1_1_0\Classes\XMBConfig.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_1_1_0\Classes\XMBDownloadableContentInfo_XModBase.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Core_1_1_0\Classes\XMBTargetingMethod_Grenade.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Interfaces\Classes\XMBEffectInterface.uc">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Src\XModBase_Interfaces\Classes\XMBOverrideInterface.uc">
+      <SubType>Content</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
 </Project>

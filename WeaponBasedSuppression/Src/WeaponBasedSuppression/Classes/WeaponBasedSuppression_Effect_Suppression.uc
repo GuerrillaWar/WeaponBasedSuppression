@@ -1,8 +1,11 @@
-class WeaponBasedSuppression_Effect_Suppression extends X2Effect_Suppression config(WeaponBasedSuppression);
+class WeaponBasedSuppression_Effect_Suppression extends X2Effect_Suppression
+	implements(XMBEffectInterface)
+	config(WeaponBasedSuppression);
 
 var config int Soldier_AimPenalty;     //  inside GetToHitModifiers, this value is used if the Attacker is not on eTeam_XCom (because a soldier hit this unit with suppression)
 var config int Alien_AimPenalty;       //  as above, but only for eTeam_XCom (because an alien hit this xcom unit with suppression)
 var config int Multiplayer_AimPenalty; //  the value used in MP games
+var config bool StackingSuppression;
 
 struct SuppressionWeaponMapping
 {
@@ -12,6 +15,8 @@ struct SuppressionWeaponMapping
 };
 
 var const config array<SuppressionWeaponMapping> SuppressionWeaponMappings;
+
+function bool UniqueToHitModifiers() { return !StackingSuppression; } // false = stacking, true = no stacking
 
 function GetToHitModifiers(XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, out array<ShotModifierInfo> ShotModifiers)
 {
@@ -64,6 +69,24 @@ simulated protected function OnEffectAdded(const out EffectAppliedData ApplyEffe
 	AbilityContext = XComGameStateContext_Ability(NewGameState.GetContext());
 	SourceUnit.m_SuppressionAbilityContext = AbilityContext;
 	NewGameState.AddStateObject(SourceUnit);
+}
+
+// From XMBEffectInterface // required for interface to not return none
+function bool GetExtModifiers(name Type, XComGameState_Effect EffectState, XComGameState_Unit Attacker, XComGameState_Unit Target, XComGameState_Ability AbilityState, class<X2AbilityToHitCalc> ToHitType, bool bMelee, bool bFlanking, bool bIndirectFire, optional ShotBreakdown ShotBreakdown, optional out array<ShotModifierInfo> ShotModifiers) { return false; }
+function bool GetExtValue(LWTuple Tuple) { return false; }
+
+function bool GetTagValue(name Tag, XComGameState_Ability AbilityState, out string TagValue)
+{
+	local XComGameState_Unit SuppressedUnit;
+	SuppressedUnit = new class'XComGameState_Unit';
+	`log("GetTagValue:" @ Tag);
+	if (Tag == 'WeaponBasedSuppressionPenalty')
+	{
+		TagValue = string(GetAimModifierFromAbility(AbilityState, SuppressedUnit)); // just using a dummy target here
+		return true;
+	}
+
+	return false;
 }
 
 function int GetAimModifierFromAbility(XComGameState_Ability SourceAbility, XComGameState_Unit SuppressedUnit)
